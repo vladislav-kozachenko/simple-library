@@ -3,6 +3,7 @@ package javaclasses.library.impl;
 import javaclasses.library.Library;
 import javaclasses.library.impl.book.Book;
 import javaclasses.library.impl.user.User;
+import javaclasses.library.impl.user.UserDAO;
 import javaclasses.library.impl.user.UserService;
 
 
@@ -12,9 +13,11 @@ import javaclasses.library.impl.user.UserService;
 public class LibraryImpl implements Library {
 
     private final UserService userService;
+    private final UserDAO userDAO;
 
     public LibraryImpl(){
-        userService = new UserService();
+        userDAO = new UserDAO();
+        userService = new UserService(userDAO);
     }
 
     @Override
