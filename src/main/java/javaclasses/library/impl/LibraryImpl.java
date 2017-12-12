@@ -21,7 +21,7 @@ public class LibraryImpl implements Library {
     }
 
     @Override
-    public void addBook(Book book) {
+    public void addBook(String securityToken, Book book) {
 
     }
 
@@ -31,7 +31,7 @@ public class LibraryImpl implements Library {
     }
 
     @Override
-    public void createUser(User user) {
+    public void createUser(String securityToken, User user) {
         userService.createUser(user);
     }
 

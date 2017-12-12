@@ -8,4 +8,7 @@ public class UserDAO {
         this.userRepository = new UserRepository();
     }
 
+    public void newUser(User user) {
+        userRepository.insert(user);
+    }
 }

@@ -14,7 +14,7 @@ public interface Library {
      * Adds new book to book storage.
      * @param book is the book may be added.
      */
-    void addBook(Book book);
+    void addBook(String securityToken, Book book);
 
     /**
      * Assign book that may be borrowed to the user that needs to borrow it.
@@ -27,7 +27,7 @@ public interface Library {
      * Creating new user.
      * @param user that may be created.
      */
-    void createUser(User user);
+    void createUser(String securityToken, User user);
 
     /**
      * Creates new user session.

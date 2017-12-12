@@ -5,6 +5,8 @@ import java.util.Map;
 
 public class UserRepository {
 
+    private long identifier = 0;
+
     private Map<Long, User> repository;
 
     public UserRepository(){
@@ -13,5 +15,13 @@ public class UserRepository {
 
     public Map<Long, User> getRepository() {
         return repository;
+    }
+
+    public void insert(User user){
+        repository.put(identifier, user);
+    }
+
+    public User read(long id){
+        return repository.get(id);
     }
 }
