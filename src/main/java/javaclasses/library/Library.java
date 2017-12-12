@@ -1,7 +1,7 @@
 package javaclasses.library;
 
 import javaclasses.library.impl.book.Book;
-import javaclasses.library.impl.user.User;
+import javaclasses.library.impl.user.UserVO;
 
 /**
  * Represents library management system.
@@ -27,7 +27,7 @@ public interface Library {
      * Creating new user.
      * @param user that may be created.
      */
-    void createUser(String securityToken, User user);
+    void createUser(String securityToken, UserVO user);
 
     /**
      * Creates new user session.

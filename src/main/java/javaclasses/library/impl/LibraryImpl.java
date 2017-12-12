@@ -2,9 +2,12 @@ package javaclasses.library.impl;
 
 import javaclasses.library.Library;
 import javaclasses.library.impl.book.Book;
-import javaclasses.library.impl.user.User;
 import javaclasses.library.impl.user.UserDAO;
 import javaclasses.library.impl.user.UserService;
+import javaclasses.library.impl.user.UserVO;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 
 /**
@@ -15,7 +18,7 @@ public class LibraryImpl implements Library {
     private final UserService userService;
     private final UserDAO userDAO;
 
-    public LibraryImpl(){
+    public LibraryImpl()  {
         userDAO = new UserDAO();
         userService = new UserService(userDAO);
     }
@@ -31,8 +34,8 @@ public class LibraryImpl implements Library {
     }
 
     @Override
-    public void createUser(String securityToken, User user) {
-        userService.createUser(user);
+    public void createUser(String securityToken, UserVO user) {
+        userService.createUser(securityToken, user);
     }
 
     @Override

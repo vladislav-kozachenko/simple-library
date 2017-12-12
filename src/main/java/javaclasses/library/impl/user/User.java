@@ -6,9 +6,9 @@ public class User {
 
     private String username;
 
-    private String password;
+    private byte[] password;
 
-    public User(String username, String password) {
+    public User(String username, byte[] password) {
         this.username = username;
         this.password = password;
     }
