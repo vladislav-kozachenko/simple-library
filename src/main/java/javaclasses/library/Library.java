@@ -1,7 +1,12 @@
 package javaclasses.library;
 
+import javaclasses.library.impl.book.Book;
+import javaclasses.library.impl.user.User;
+
 /**
  * Represents library management system.
+ *
+ * @author Kozachenko
  */
 public interface Library {
 
