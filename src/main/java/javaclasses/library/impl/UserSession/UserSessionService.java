@@ -8,8 +8,16 @@ import java.util.Date;
 
 public class UserSessionService {
 
+    private final UserSessionDAO userSessionDAO;
+
+    public UserSessionService(UserSessionDAO userSessionDAO) {
+        this.userSessionDAO = userSessionDAO;
+    }
+
     public String createSession(User user){
-        return newSession(user).getToken();
+        UserSession session = newSession(user);
+        userSessionDAO.createSession(session);
+        return session.getToken();
     }
 
     private UserSession newSession(User user)  {

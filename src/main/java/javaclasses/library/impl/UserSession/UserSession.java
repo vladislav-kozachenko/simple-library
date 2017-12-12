@@ -23,4 +23,8 @@ public class UserSession {
     public String getToken() {
         return token;
     }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }
