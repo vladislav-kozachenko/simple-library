@@ -19,5 +19,8 @@ public class UserSession {
         this.token = token;
         this.user = user;
     }
-    
+
+    public String getToken() {
+        return token;
+    }
 }
