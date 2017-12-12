@@ -19,6 +19,8 @@ public class UserRepository {
 
     public void insert(User user){
         repository.put(identifier, user);
+        user.setId(identifier);
+        identifier++;
     }
 
     public User read(long id){

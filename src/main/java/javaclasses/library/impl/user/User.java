@@ -24,4 +24,8 @@ public class User {
     public byte[] getPassword() {
         return password;
     }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }
