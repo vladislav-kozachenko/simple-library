@@ -1,5 +1,6 @@
 package javaclasses.library;
 
+import javaclasses.library.impl.author.AuthorVO;
 import javaclasses.library.impl.book.Book;
 import javaclasses.library.impl.user.UserVO;
 
@@ -36,4 +37,12 @@ public interface Library {
      * @return unique security token.
      */
     String loginUser(String login, String password) throws AuthenticationException;
+
+    /**
+     * Creates new user author.
+     * @param securityToken unique security token may be used to get user and check if the user is logged in
+     *                      and have permissions to create author.
+     * @param author that may be created.
+     */
+    void addAuthor(String securityToken, AuthorVO author);
 }
