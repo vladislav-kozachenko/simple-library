@@ -58,7 +58,7 @@ public class LibraryImpl implements Library {
     }
 
     @Override
-    public void addAuthor(String securityToken, AuthorVO author) {
+    public void addAuthor(String securityToken, AuthorVO author) throws IllegalAccessException {
         authorService.createAuthor(securityToken, author);
     }
 }

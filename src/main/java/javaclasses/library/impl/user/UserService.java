@@ -41,7 +41,7 @@ public class UserService {
         userDAO.newUser(new User(userVO.getUsername(), MD5.digest(userVO.getPassword().getBytes()), userVO.getRole()));
     }
 
-    private void checkUserPermission(String securityToken, UserPermission permission) throws IllegalAccessException {
+    public void checkUserPermission(String securityToken, UserPermission permission) throws IllegalAccessException {
         final User user = userSessionService.getUserBySecurityToken(securityToken);
         if (!Arrays.asList(user.getRole().getPermissions()).contains(permission)){
             throw new IllegalAccessException("User needs permission " + permission.name());
