@@ -38,7 +38,7 @@ public class UserService {
         checkArgument(!isNullOrEmpty(userVO.getUsername()));
         checkArgument(!isNullOrEmpty(userVO.getPassword()));
 
-        userDAO.newUser(new User(userVO.getUsername(), MD5.digest(userVO.getUsername().getBytes()), userVO.getRole()));
+        userDAO.newUser(new User(userVO.getUsername(), MD5.digest(userVO.getPassword().getBytes()), userVO.getRole()));
     }
 
     private void checkUserPermission(String securityToken, UserPermission permission) throws IllegalAccessException {
@@ -46,10 +46,6 @@ public class UserService {
         if (!Arrays.asList(user.getRole().getPermissions()).contains(permission)){
             throw new IllegalAccessException("User needs permission " + permission.name());
         }
-    }
-
-    private void createAdmin(){
-        userDAO.newUser(new User("admin", MD5.digest("password".getBytes()), ADMIN));
     }
 
     public String loginUser(String login, String password) throws AuthenticationException {
@@ -64,5 +60,9 @@ public class UserService {
         }
 
         throw new AuthenticationException("Invalid username or password.");
+    }
+
+    private void createAdmin(){
+        userDAO.newUser(new User("admin", MD5.digest("password".getBytes()), ADMIN));
     }
 }

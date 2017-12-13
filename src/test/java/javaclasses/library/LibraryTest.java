@@ -10,6 +10,8 @@ import org.junit.Test;
 
 import javax.naming.AuthenticationException;
 
+import static org.junit.Assert.*;
+
 
 public class LibraryTest {
 
@@ -21,12 +23,15 @@ public class LibraryTest {
     }
 
     @Test
-    public void testCreateUser(){
+    public void testCreateUser() throws AuthenticationException, IllegalAccessException {
         UserVO user = new UserVO("User", "awesomename", UserRole.VISITOR);
+        String token = library.loginUser("admin", "password");
+        library.createUser(token, user);
+        assertNotNull(library.loginUser("User", "awesomename"));
     }
 
     @Test
     public void testLoginAdmin() throws AuthenticationException {
-        Assert.assertNotNull(library.loginUser("admin", "password"));
+        assertNotNull(library.loginUser("admin", "password"));
     }
 }
