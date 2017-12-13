@@ -9,6 +9,7 @@ import java.util.Arrays;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static javaclasses.library.impl.user.UserPermission.CREATE_USER;
+import static javaclasses.library.impl.user.UserRole.ADMIN;
 
 public class UserService {
 
@@ -25,6 +26,7 @@ public class UserService {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
+        createAdmin();
     }
 
     public void createUser(String securityToken, UserVO userVO) throws IllegalAccessException {
@@ -44,5 +46,7 @@ public class UserService {
         }
     }
 
-
+    private void createAdmin(){
+        userDAO.newUser(new User("admin", MD5.digest("password".getBytes()), ADMIN));
+    }
 }
