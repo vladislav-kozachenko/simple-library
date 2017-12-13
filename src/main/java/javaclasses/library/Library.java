@@ -1,10 +1,12 @@
 package javaclasses.library;
 
+import javaclasses.library.impl.author.Author;
 import javaclasses.library.impl.author.AuthorVO;
 import javaclasses.library.impl.book.Book;
 import javaclasses.library.impl.user.UserVO;
 
 import javax.naming.AuthenticationException;
+import java.util.List;
 
 /**
  * Represents library management system.
@@ -50,4 +52,9 @@ public interface Library {
      * @param author        that may be created.
      */
     void addAuthor(String securityToken, AuthorVO author) throws IllegalAccessException;
+
+    /**
+     * Returns list of all author has been added to library.
+     */
+    List<Author> getAuthors();
 }

@@ -3,6 +3,7 @@ package javaclasses.library.impl;
 import javaclasses.library.Library;
 import javaclasses.library.impl.UserSession.UserSessionDAO;
 import javaclasses.library.impl.UserSession.UserSessionService;
+import javaclasses.library.impl.author.Author;
 import javaclasses.library.impl.author.AuthorDAO;
 import javaclasses.library.impl.author.AuthorService;
 import javaclasses.library.impl.author.AuthorVO;
@@ -12,8 +13,7 @@ import javaclasses.library.impl.user.UserService;
 import javaclasses.library.impl.user.UserVO;
 
 import javax.naming.AuthenticationException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 
 /**
@@ -35,6 +35,11 @@ public class LibraryImpl implements Library {
         userService = new UserService(userDAO, userSessionService);
         authorDAO = new AuthorDAO();
         authorService = new AuthorService(authorDAO, userService);
+    }
+
+    @Override
+    public List<Author> getAuthors() {
+        return authorService.getAllAuthors();
     }
 
     @Override

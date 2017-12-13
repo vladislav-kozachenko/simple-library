@@ -1,9 +1,10 @@
 package javaclasses.library.impl.author;
 
 import com.google.common.base.Preconditions;
-import com.google.common.base.Strings;
 import javaclasses.library.impl.user.UserPermission;
 import javaclasses.library.impl.user.UserService;
+
+import java.util.List;
 
 public class AuthorService {
 
@@ -20,5 +21,9 @@ public class AuthorService {
         userService.checkUserPermission(securityToken, UserPermission.CREATE_AUTHOR);
         Author author = new Author(authorVO.getFirstName(), authorVO.getLastName());
         authorDAO.createAuthor(author);
+    }
+
+    public List<Author> getAllAuthors() {
+        return authorDAO.findAll();
     }
 }
