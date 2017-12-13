@@ -27,7 +27,7 @@ public interface Library {
      * Creating new user.
      * @param user that may be created.
      */
-    void createUser(String securityToken, UserVO user);
+    void createUser(String securityToken, UserVO user) throws IllegalAccessException;
 
     /**
      * Creates new user session.

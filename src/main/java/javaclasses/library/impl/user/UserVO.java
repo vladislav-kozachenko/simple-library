@@ -6,9 +6,16 @@ public class UserVO {
 
     private String password;
 
-    public UserVO(String username, String password) {
+    private UserRole role;
+
+    public UserVO(String username, String password, UserRole role) {
         this.username = username;
         this.password = password;
+        this.role = role;
+    }
+
+    public UserRole getRole() {
+        return role;
     }
 
     public String getUsername() {

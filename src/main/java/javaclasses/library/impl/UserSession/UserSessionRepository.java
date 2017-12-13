@@ -18,4 +18,8 @@ public class UserSessionRepository {
         session.setId(id);
         id++;
     }
+
+    public Map<Long, UserSession> getRepository() {
+        return repository;
+    }
 }

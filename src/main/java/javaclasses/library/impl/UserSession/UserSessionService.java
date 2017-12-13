@@ -35,4 +35,7 @@ public class UserSessionService {
         return new UserSession(date, securedToken, user);
     }
 
+    public User getUserBySecurityToken(String securityToken) throws IllegalAccessException {
+        return userSessionDAO.getUserByToken(securityToken);
+    }
 }
