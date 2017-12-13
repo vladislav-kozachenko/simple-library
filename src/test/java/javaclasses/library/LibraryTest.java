@@ -3,6 +3,7 @@ package javaclasses.library;
 import javaclasses.library.impl.LibraryImpl;
 import javaclasses.library.impl.author.Author;
 import javaclasses.library.impl.author.AuthorVO;
+import javaclasses.library.impl.book.BookVO;
 import javaclasses.library.impl.user.User;
 import javaclasses.library.impl.user.UserRole;
 import javaclasses.library.impl.user.UserVO;
@@ -55,5 +56,15 @@ public class LibraryTest {
         library.addAuthor(librarianToken, new AuthorVO("John", "Tolkien"));
         Author author = library.getAuthorById(0);
         assertEquals(author.getFirstName(), "John");
+    }
+
+    @Test
+    public void testBookAdding() throws AuthenticationException, IllegalAccessException {
+        String adminToken = library.loginUser("admin", "password");
+        library.createUser(adminToken, new UserVO("librarian", "12345", UserRole.LIBRARIAN));
+        String librarianToken = library.loginUser("librarian", "12345");
+        library.addAuthor(librarianToken, new AuthorVO("John", "Tolkien"));
+        library.addBook(librarianToken, new BookVO("LOTR"), 0);
+
     }
 }

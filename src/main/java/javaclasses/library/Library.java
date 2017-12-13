@@ -2,7 +2,7 @@ package javaclasses.library;
 
 import javaclasses.library.impl.author.Author;
 import javaclasses.library.impl.author.AuthorVO;
-import javaclasses.library.impl.book.Book;
+import javaclasses.library.impl.book.BookVO;
 import javaclasses.library.impl.user.UserVO;
 
 import javax.naming.AuthenticationException;
@@ -20,7 +20,7 @@ public interface Library {
      *
      * @param book is the book may be added.
      */
-    void addBook(String securityToken, Book book);
+    void addBook(String securityToken, BookVO book, long... authorIds) throws IllegalAccessException;
 
     /**
      * Assign book that may be borrowed to the user that needs to borrow it.
@@ -28,7 +28,7 @@ public interface Library {
      * @param securityToken unique security token may be used to get user and check if the user is logged in.
      * @param book          is the book that may be borrowed.
      */
-    void borrowBook(String securityToken, Book book);
+    void borrowBook(String securityToken, BookVO book);
 
     /**
      * Creating new user.

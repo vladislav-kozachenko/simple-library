@@ -4,7 +4,7 @@ import static javaclasses.library.impl.user.UserPermission.*;
 
 public enum UserRole {
     VISITOR,
-    LIBRARIAN(CREATE_AUTHOR),
+    LIBRARIAN(CREATE_AUTHOR, CREATE_BOOK),
     ADMIN(CREATE_USER);
 
     private UserPermission[] permissions;

@@ -27,4 +27,9 @@ public class Author {
         this.lastName = lastName;
     }
 
+    public Author(AuthorVO vo){
+        firstName = vo.getFirstName();
+        lastName = vo.getLastName();
+    }
+
 }

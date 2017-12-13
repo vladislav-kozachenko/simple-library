@@ -7,7 +7,9 @@ import javaclasses.library.impl.author.Author;
 import javaclasses.library.impl.author.AuthorDAO;
 import javaclasses.library.impl.author.AuthorService;
 import javaclasses.library.impl.author.AuthorVO;
-import javaclasses.library.impl.book.Book;
+import javaclasses.library.impl.book.BookDAO;
+import javaclasses.library.impl.book.BookService;
+import javaclasses.library.impl.book.BookVO;
 import javaclasses.library.impl.user.UserDAO;
 import javaclasses.library.impl.user.UserService;
 import javaclasses.library.impl.user.UserVO;
@@ -27,6 +29,8 @@ public class LibraryImpl implements Library {
     private final UserDAO userDAO;
     private final UserSessionService userSessionService;
     private final UserSessionDAO userSessionDAO;
+    private final BookService bookService;
+    private final BookDAO bookDAO;
 
     public LibraryImpl()  {
         userSessionDAO = new UserSessionDAO();
@@ -35,6 +39,8 @@ public class LibraryImpl implements Library {
         userService = new UserService(userDAO, userSessionService);
         authorDAO = new AuthorDAO();
         authorService = new AuthorService(authorDAO, userService);
+        bookDAO = new BookDAO();
+        bookService = new BookService(bookDAO, userService, authorService);
     }
 
     @Override
@@ -43,12 +49,12 @@ public class LibraryImpl implements Library {
     }
 
     @Override
-    public void addBook(String securityToken, Book book) {
-
+    public void addBook(String securityToken, BookVO book, long... authorIds) throws IllegalAccessException {
+        bookService.createBook(securityToken, book, authorIds);
     }
 
     @Override
-    public void borrowBook(String securityToken, Book book) {
+    public void borrowBook(String securityToken, BookVO book) {
 
     }
 
