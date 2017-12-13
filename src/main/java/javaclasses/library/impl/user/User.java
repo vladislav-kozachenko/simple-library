@@ -8,9 +8,12 @@ public class User {
 
     private byte[] password;
 
-    public User(String username, byte[] password) {
+    private UserRole role;
+
+    public User(String username, byte[] password, UserRole role) {
         this.username = username;
         this.password = password;
+        this.role = role;
     }
 
     public long getId() {

@@ -2,6 +2,7 @@ package javaclasses.library;
 
 import javaclasses.library.impl.LibraryImpl;
 import javaclasses.library.impl.user.User;
+import javaclasses.library.impl.user.UserVO;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,7 +17,7 @@ public class LibraryTest {
 
     @Test
     public void testCreateUser(){
-        User user = new User("User", "awesomename");
+        UserVO user = new UserVO("User", "awesomename");
 
     }
 }
