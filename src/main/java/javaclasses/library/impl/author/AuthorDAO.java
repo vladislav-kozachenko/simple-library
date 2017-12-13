@@ -23,4 +23,8 @@ public class AuthorDAO {
     public List<Author> findAll() {
         return new ArrayList<>(repository.values());
     }
+
+    public Author findById(long id) {
+        return repository.get(id);
+    }
 }

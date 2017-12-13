@@ -26,4 +26,8 @@ public class AuthorService {
     public List<Author> getAllAuthors() {
         return authorDAO.findAll();
     }
+
+    public Author getById(long id) {
+        return authorDAO.findById(id);
+    }
 }

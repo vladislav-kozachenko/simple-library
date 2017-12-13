@@ -57,4 +57,11 @@ public interface Library {
      * Returns list of all author has been added to library.
      */
     List<Author> getAuthors();
+
+    /**
+     * Finds author with inputted id in library.
+     * @param id for author searching.
+     * @return author with needed id.
+     */
+    Author getAuthorById(long id);
 }
