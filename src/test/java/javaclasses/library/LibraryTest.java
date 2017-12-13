@@ -65,6 +65,6 @@ public class LibraryTest {
         String librarianToken = library.loginUser("librarian", "12345");
         library.addAuthor(librarianToken, new AuthorVO("John", "Tolkien"));
         library.addBook(librarianToken, new BookVO("LOTR"), 0);
-
+        assertEquals("LOTR", library.getBookById(librarianToken, 0).getName());
     }
 }

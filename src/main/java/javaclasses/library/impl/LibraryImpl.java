@@ -7,6 +7,7 @@ import javaclasses.library.impl.author.Author;
 import javaclasses.library.impl.author.AuthorDAO;
 import javaclasses.library.impl.author.AuthorService;
 import javaclasses.library.impl.author.AuthorVO;
+import javaclasses.library.impl.book.Book;
 import javaclasses.library.impl.book.BookDAO;
 import javaclasses.library.impl.book.BookService;
 import javaclasses.library.impl.book.BookVO;
@@ -51,6 +52,11 @@ public class LibraryImpl implements Library {
     @Override
     public void addBook(String securityToken, BookVO book, long... authorIds) throws IllegalAccessException {
         bookService.createBook(securityToken, book, authorIds);
+    }
+
+    @Override
+    public Book getBookById(String securityToken, long id) {
+        return bookService.getBookById(id);
     }
 
     @Override

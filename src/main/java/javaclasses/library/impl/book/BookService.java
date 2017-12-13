@@ -28,4 +28,8 @@ public class BookService {
         }
         bookDAO.create(new Book(bookVO.getName(), authors));
     }
+
+    public Book getBookById(long id) {
+        return bookDAO.findById(id);
+    }
 }

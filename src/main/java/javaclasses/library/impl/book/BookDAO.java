@@ -17,4 +17,8 @@ public class BookDAO {
         repository.put(id, book);
         id++;
     }
+
+    public Book findById(long id) {
+        return repository.get(id);
+    }
 }
