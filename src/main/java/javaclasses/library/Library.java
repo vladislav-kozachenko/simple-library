@@ -3,6 +3,8 @@ package javaclasses.library;
 import javaclasses.library.impl.book.Book;
 import javaclasses.library.impl.user.UserVO;
 
+import javax.naming.AuthenticationException;
+
 /**
  * Represents library management system.
  *
@@ -33,6 +35,5 @@ public interface Library {
      * Creates new user session.
      * @return unique security token.
      */
-    String loginUser();
-
+    String loginUser(String login, String password) throws AuthenticationException;
 }

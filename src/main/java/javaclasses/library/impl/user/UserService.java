@@ -2,11 +2,13 @@ package javaclasses.library.impl.user;
 
 import javaclasses.library.impl.UserSession.UserSessionService;
 
+import javax.naming.AuthenticationException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static javaclasses.library.impl.user.UserPermission.CREATE_USER;
 import static javaclasses.library.impl.user.UserRole.ADMIN;
@@ -31,10 +33,10 @@ public class UserService {
 
     public void createUser(String securityToken, UserVO userVO) throws IllegalAccessException {
 
-        checkArgument(isNullOrEmpty(securityToken));
+        checkArgument(!isNullOrEmpty(securityToken));
         checkUserPermission(securityToken, CREATE_USER);
-        checkArgument(isNullOrEmpty(userVO.getUsername()));
-        checkArgument(isNullOrEmpty(userVO.getPassword()));
+        checkArgument(!isNullOrEmpty(userVO.getUsername()));
+        checkArgument(!isNullOrEmpty(userVO.getPassword()));
 
         userDAO.newUser(new User(userVO.getUsername(), MD5.digest(userVO.getUsername().getBytes()), userVO.getRole()));
     }
@@ -48,5 +50,19 @@ public class UserService {
 
     private void createAdmin(){
         userDAO.newUser(new User("admin", MD5.digest("password".getBytes()), ADMIN));
+    }
+
+    public String loginUser(String login, String password) throws AuthenticationException {
+        checkArgument(!isNullOrEmpty(login));
+        checkArgument(!isNullOrEmpty(password));
+
+        User user = userDAO.findByUsername(login);
+        checkNotNull(user);
+
+        if (Arrays.equals(MD5.digest(password.getBytes()), (user.getPassword()))){
+            return userSessionService.createSession(user);
+        }
+
+        throw new AuthenticationException("Invalid username or password.");
     }
 }

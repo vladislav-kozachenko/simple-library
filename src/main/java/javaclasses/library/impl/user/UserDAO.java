@@ -11,4 +11,13 @@ public class UserDAO {
     public void newUser(User user) {
         userRepository.insert(user);
     }
+
+    public User findByUsername(String login) {
+        for (User user : userRepository.getRepository().values()) {
+            if (user.getUsername().equals(login)){
+                return user;
+            }
+        }
+        return null;
+    }
 }

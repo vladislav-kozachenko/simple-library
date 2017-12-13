@@ -8,6 +8,7 @@ import javaclasses.library.impl.user.UserDAO;
 import javaclasses.library.impl.user.UserService;
 import javaclasses.library.impl.user.UserVO;
 
+import javax.naming.AuthenticationException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -45,8 +46,8 @@ public class LibraryImpl implements Library {
     }
 
     @Override
-    public String loginUser() {
-        return null;
+    public String loginUser(String login, String password) throws AuthenticationException {
+        return userService.loginUser(login, password);
     }
 
 }
