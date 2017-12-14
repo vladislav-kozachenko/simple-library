@@ -13,24 +13,28 @@ import org.junit.Test;
 
 import javax.naming.AuthenticationException;
 
+import static javaclasses.library.impl.user.UserRole.*;
 import static org.junit.Assert.*;
 
 
 public class LibraryTest {
 
     private Library library;
+    private String adminToken;
+    private String librarianToken;
+    private String visitorToken;
 
     @Before
-    public void setLibrary(){
+    public void setLibrary() throws AuthenticationException {
         library = new LibraryImpl();
+        adminToken = library.loginUser("admin", "password");
     }
 
     @Test
     public void testCreateUser() throws AuthenticationException, IllegalAccessException {
-        UserVO user = new UserVO("User", "awesomename", UserRole.VISITOR);
-        String token = library.loginUser("admin", "password");
-        library.createUser(token, user);
-        assertNotNull(library.loginUser("User", "awesomename"));
+        UserVO user = new UserVO("User", "password", VISITOR);
+        library.createUser(adminToken, user);
+        assertNotNull(library.loginUser("User", "password"));
     }
 
     @Test
@@ -40,9 +44,7 @@ public class LibraryTest {
 
     @Test
     public void testAddingAuthors() throws AuthenticationException, IllegalAccessException {
-        String adminToken = library.loginUser("admin", "password");
-        library.createUser(adminToken, new UserVO("librarian", "12345", UserRole.LIBRARIAN));
-        String librarianToken = library.loginUser("librarian", "12345");
+        createAndLoginLibrarian();
         library.addAuthor(librarianToken, new AuthorVO("John", "Tolkien"));
         Author author = library.getAuthors().get(0);
         assertEquals(author.getFirstName(), "John");
@@ -50,9 +52,7 @@ public class LibraryTest {
 
     @Test
     public void testAuthorsGettingById() throws AuthenticationException, IllegalAccessException {
-        String adminToken = library.loginUser("admin", "password");
-        library.createUser(adminToken, new UserVO("librarian", "12345", UserRole.LIBRARIAN));
-        String librarianToken = library.loginUser("librarian", "12345");
+        createAndLoginLibrarian();
         library.addAuthor(librarianToken, new AuthorVO("John", "Tolkien"));
         Author author = library.getAuthorById(0);
         assertEquals(author.getFirstName(), "John");
@@ -60,9 +60,7 @@ public class LibraryTest {
 
     @Test
     public void testBookAdding() throws AuthenticationException, IllegalAccessException {
-        String adminToken = library.loginUser("admin", "password");
-        library.createUser(adminToken, new UserVO("librarian", "12345", UserRole.LIBRARIAN));
-        String librarianToken = library.loginUser("librarian", "12345");
+        createAndLoginLibrarian();
         library.addAuthor(librarianToken, new AuthorVO("John", "Tolkien"));
         library.addBook(librarianToken, new BookVO("LOTR"), new AuthorVO(0));
         assertEquals("LOTR", library.getBookById(librarianToken, 0).getName());
@@ -70,14 +68,21 @@ public class LibraryTest {
 
     @Test
     public void testBookBorrowing() throws AuthenticationException, IllegalAccessException {
-        String adminToken = library.loginUser("admin", "password");
-        library.createUser(adminToken, new UserVO("librarian", "12345", UserRole.LIBRARIAN));
-        String librarianToken = library.loginUser("librarian", "12345");
+        createAndLoginLibrarian();
         library.addAuthor(librarianToken, new AuthorVO("John", "Tolkien"));
         library.addBook(librarianToken, new BookVO("LOTR"), new AuthorVO(0));
-        library.createUser(adminToken, new UserVO("visitor", "12345", UserRole.VISITOR));
-        String visitorToken = library.loginUser("visitor", "12345");
+        createAndLoginVisitor();
         library.borrowBook(visitorToken, new BookVO(0));
         assertEquals("LOTR", library.getBorrowedBooks(visitorToken).get(0).getName());
+    }
+
+    private void createAndLoginVisitor() throws IllegalAccessException, AuthenticationException {
+        library.createUser(adminToken, new UserVO("visitor", "12345", VISITOR));
+        visitorToken = library.loginUser("visitor", "12345");
+    }
+
+    private void createAndLoginLibrarian() throws IllegalAccessException, AuthenticationException {
+        library.createUser(adminToken, new UserVO("librarian", "12345", LIBRARIAN));
+        librarianToken = library.loginUser("librarian", "12345");
     }
 }
