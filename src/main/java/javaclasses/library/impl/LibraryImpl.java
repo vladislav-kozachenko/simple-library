@@ -9,10 +9,7 @@ import javaclasses.library.impl.author.*;
 import javaclasses.library.impl.author.fields.AuthorID;
 import javaclasses.library.impl.book.*;
 import javaclasses.library.impl.book.fields.BookID;
-import javaclasses.library.impl.user.UserDAO;
-import javaclasses.library.impl.user.UserName;
-import javaclasses.library.impl.user.UserService;
-import javaclasses.library.impl.user.UserVO;
+import javaclasses.library.impl.user.*;
 
 import java.util.List;
 
@@ -31,7 +28,7 @@ public class LibraryImpl implements Library {
         UserSessionDAO userSessionDAO = new UserSessionDAO();
         userSessionService = new UserSessionService(userSessionDAO);
         final UserDAO userDAO = new UserDAO();
-        userService = new UserService(userDAO, userSessionService);
+        userService = new UserServiceImpl(userDAO, userSessionService);
         final AuthorDAO authorDAO = new AuthorDAO();
         authorService = new AuthorServiceImpl(authorDAO, userService);
         final BookDAO bookDAO = new BookDAO();

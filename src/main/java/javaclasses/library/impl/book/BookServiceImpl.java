@@ -7,6 +7,7 @@ import javaclasses.library.impl.author.AuthorVO;
 import javaclasses.library.impl.book.fields.BookID;
 import javaclasses.library.impl.user.UserPermission;
 import javaclasses.library.impl.user.UserService;
+import javaclasses.library.impl.user.UserServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
