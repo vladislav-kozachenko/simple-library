@@ -26,21 +26,17 @@ public class LibraryImpl implements Library {
 
     private final UserService userService;
     private final AuthorService authorService;
-    private final AuthorDAO authorDAO;
-    private final UserDAO userDAO;
     private final UserSessionService userSessionService;
-    private final UserSessionDAO userSessionDAO;
     private final BookService bookService;
-    private final BookDAO bookDAO;
 
     public LibraryImpl()  {
-        userSessionDAO = new UserSessionDAO();
+        UserSessionDAO userSessionDAO = new UserSessionDAO();
         userSessionService = new UserSessionService(userSessionDAO);
-        userDAO = new UserDAO();
+        final UserDAO userDAO = new UserDAO();
         userService = new UserService(userDAO, userSessionService);
-        authorDAO = new AuthorDAO();
+        final AuthorDAO authorDAO = new AuthorDAO();
         authorService = new AuthorService(authorDAO, userService);
-        bookDAO = new BookDAO();
+        final BookDAO bookDAO = new BookDAO();
         bookService = new BookService(bookDAO, userService, authorService);
     }
 

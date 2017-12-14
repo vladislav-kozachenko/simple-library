@@ -25,9 +25,10 @@ public interface Library {
 
     /**
      * Finds the book which has inputted id.
+     *
      * @param securityToken unique security token may be used to get user and check if the user is logged in and has
      *                      required permission.
-     * @param id is the identifier of needed book.
+     * @param id            is the identifier of needed book.
      * @return the book with inputted id.
      */
     Book getBookById(String securityToken, long id);
@@ -42,6 +43,7 @@ public interface Library {
 
     /**
      * Finds all books that user borrowed.
+     *
      * @param securityToken unique security token may be used to get user and check if the user is logged in and has
      *                      required permission.
      * @return the list of borrowed books.
@@ -78,6 +80,7 @@ public interface Library {
 
     /**
      * Finds author with inputted id in library.
+     *
      * @param id for author searching.
      * @return author with needed id.
      */
