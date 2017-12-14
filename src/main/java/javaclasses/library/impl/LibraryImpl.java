@@ -5,10 +5,7 @@ import javaclasses.library.LoginFailException;
 import javaclasses.library.NoPermissionException;
 import javaclasses.library.impl.UserSession.UserSessionDAO;
 import javaclasses.library.impl.UserSession.UserSessionService;
-import javaclasses.library.impl.author.Author;
-import javaclasses.library.impl.author.AuthorDAO;
-import javaclasses.library.impl.author.AuthorService;
-import javaclasses.library.impl.author.AuthorVO;
+import javaclasses.library.impl.author.*;
 import javaclasses.library.impl.author.fields.AuthorID;
 import javaclasses.library.impl.book.Book;
 import javaclasses.library.impl.book.BookDAO;
@@ -37,7 +34,7 @@ public class LibraryImpl implements Library {
         final UserDAO userDAO = new UserDAO();
         userService = new UserService(userDAO, userSessionService);
         final AuthorDAO authorDAO = new AuthorDAO();
-        authorService = new AuthorService(authorDAO, userService);
+        authorService = new AuthorServiceImpl(authorDAO, userService);
         final BookDAO bookDAO = new BookDAO();
         bookService = new BookService(bookDAO, userService, authorService);
     }
