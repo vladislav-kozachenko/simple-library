@@ -1,6 +1,7 @@
 package javaclasses.library.impl.user;
 
 import javaclasses.library.impl.UserSession.UserSessionService;
+import javaclasses.library.impl.book.Book;
 
 import javax.naming.AuthenticationException;
 import java.security.MessageDigest;
@@ -64,5 +65,11 @@ public class UserService {
 
     private void createAdmin(){
         userDAO.newUser(new User("admin", MD5.digest("password".getBytes()), ADMIN));
+    }
+
+    public void borrowBook(String securityToken, Book book) throws IllegalAccessException {
+        checkNotNull(book);
+        User user = userSessionService.getUserBySecurityToken(securityToken);
+        userDAO.borrowBook(user, book);
     }
 }

@@ -60,8 +60,8 @@ public class LibraryImpl implements Library {
     }
 
     @Override
-    public void borrowBook(String securityToken, BookVO book) {
-
+    public void borrowBook(String securityToken, BookVO book) throws IllegalAccessException {
+        bookService.borrowBook(securityToken, book);
     }
 
     @Override

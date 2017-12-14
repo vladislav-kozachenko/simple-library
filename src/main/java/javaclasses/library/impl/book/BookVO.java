@@ -5,6 +5,10 @@ public class BookVO {
     private long id;
     private String name;
 
+    public BookVO(long id) {
+        this.id = id;
+    }
+
     public BookVO(String name) {
         this.name = name;
     }

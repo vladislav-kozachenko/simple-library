@@ -1,5 +1,10 @@
 package javaclasses.library.impl.user;
 
+import javaclasses.library.impl.book.Book;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
 
     private long id;
@@ -10,10 +15,13 @@ public class User {
 
     private UserRole role;
 
+    private List<Book> borrowedBooks;
+
     public User(String username, byte[] password, UserRole role) {
         this.username = username;
         this.password = password;
         this.role = role;
+        borrowedBooks = new ArrayList<>();
     }
 
     public long getId() {
@@ -34,5 +42,9 @@ public class User {
 
     public UserRole getRole() {
         return role;
+    }
+
+    public List<Book> getBorrowedBooks() {
+        return borrowedBooks;
     }
 }

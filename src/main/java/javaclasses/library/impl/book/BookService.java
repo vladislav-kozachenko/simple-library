@@ -32,4 +32,10 @@ public class BookService {
     public Book getBookById(long id) {
         return bookDAO.findById(id);
     }
+
+    public void borrowBook(String securityToken, BookVO bookVO) throws IllegalAccessException {
+        userService.checkUserPermission(securityToken, UserPermission.BORROW_BOOK);
+        final Book book = getBookById(bookVO.getId());
+        userService.borrowBook(securityToken, book);
+    }
 }

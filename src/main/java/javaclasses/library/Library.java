@@ -31,7 +31,7 @@ public interface Library {
      * @param securityToken unique security token may be used to get user and check if the user is logged in.
      * @param book          is the book that may be borrowed.
      */
-    void borrowBook(String securityToken, BookVO book);
+    void borrowBook(String securityToken, BookVO book) throws IllegalAccessException;
 
     /**
      * Creating new user.
