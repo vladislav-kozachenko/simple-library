@@ -39,7 +39,7 @@ public class UserService {
 
         checkArgument(!isNullOrEmpty(securityToken));
         checkUserPermission(securityToken, CREATE_USER);
-        checkArgument(!isNullOrEmpty(userVO.getUsername()));
+        checkArgument(!isNullOrEmpty(userVO.getUsername().getValue()));
         checkArgument(!isNullOrEmpty(userVO.getPassword()));
 
         userDAO.newUser(new User(userVO.getUsername(), MD5.digest(userVO.getPassword().getBytes()), userVO.getRole()));
@@ -52,8 +52,8 @@ public class UserService {
         }
     }
 
-    public String loginUser(String login, String password) throws LoginFailException {
-        checkArgument(!isNullOrEmpty(login));
+    public String loginUser(UserName login, String password) throws LoginFailException {
+        checkArgument(!isNullOrEmpty(login.getValue()));
         checkArgument(!isNullOrEmpty(password));
 
         User user = userDAO.findByUsername(login);
@@ -67,7 +67,7 @@ public class UserService {
     }
 
     private void createAdmin(){
-        userDAO.newUser(new User("admin", MD5.digest("password".getBytes()), ADMIN));
+        userDAO.newUser(new User(new UserName("admin"), MD5.digest("password".getBytes()), ADMIN));
     }
 
     public void borrowBook(String securityToken, Book book) throws NoPermissionException {

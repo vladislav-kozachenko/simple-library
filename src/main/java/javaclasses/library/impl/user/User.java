@@ -7,9 +7,9 @@ import java.util.List;
 
 public class User {
 
-    private long id;
+    private UserID id;
 
-    private String username;
+    private UserName username;
 
     private byte[] password;
 
@@ -17,18 +17,18 @@ public class User {
 
     private List<Book> borrowedBooks;
 
-    public User(String username, byte[] password, UserRole role) {
+    public User(UserName username, byte[] password, UserRole role) {
         this.username = username;
         this.password = password;
         this.role = role;
         borrowedBooks = new ArrayList<>();
     }
 
-    public long getId() {
+    public UserID getId() {
         return id;
     }
 
-    public String getUsername() {
+    public UserName getUsername() {
         return username;
     }
 
@@ -36,7 +36,7 @@ public class User {
         return password;
     }
 
-    public void setId(long id) {
+    public void setId(UserID id) {
         this.id = id;
     }
 

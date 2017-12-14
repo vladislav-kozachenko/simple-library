@@ -16,12 +16,12 @@ public class UserDAO {
 
     public void newUser(User user){
         repository.put(identifier, user);
-        user.setId(identifier);
+        user.setId(new UserID(identifier));
         identifier++;
     }
 
 
-    public User findByUsername(String login) {
+    public User findByUsername(UserName login) {
         for (User user : repository.values()) {
             if (user.getUsername().equals(login)){
                 return user;
@@ -31,6 +31,6 @@ public class UserDAO {
     }
 
     public void borrowBook(User user, Book book) {
-        repository.get(user.getId()).getBorrowedBooks().add(book);
+        repository.get(user.getId().getValue()).getBorrowedBooks().add(book);
     }
 }

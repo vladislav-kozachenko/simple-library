@@ -10,6 +10,7 @@ import javaclasses.library.impl.author.fields.AuthorID;
 import javaclasses.library.impl.book.*;
 import javaclasses.library.impl.book.fields.BookID;
 import javaclasses.library.impl.user.UserDAO;
+import javaclasses.library.impl.user.UserName;
 import javaclasses.library.impl.user.UserService;
 import javaclasses.library.impl.user.UserVO;
 
@@ -68,7 +69,7 @@ public class LibraryImpl implements Library {
     }
 
     @Override
-    public String loginUser(String login, String password) throws LoginFailException {
+    public String loginUser(UserName login, String password) throws LoginFailException {
         return userService.loginUser(login, password);
     }
 

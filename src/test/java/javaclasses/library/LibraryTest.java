@@ -8,6 +8,7 @@ import javaclasses.library.impl.author.fields.AuthorName;
 import javaclasses.library.impl.book.fields.BookID;
 import javaclasses.library.impl.book.fields.BookTitle;
 import javaclasses.library.impl.book.BookVO;
+import javaclasses.library.impl.user.UserName;
 import javaclasses.library.impl.user.UserVO;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,19 +27,19 @@ public class LibraryTest {
     @Before
     public void setLibrary() throws LoginFailException {
         library = new LibraryImpl();
-        adminToken = library.loginUser("admin", "password");
+        adminToken = library.loginUser(new UserName("admin"), "password");
     }
 
     @Test
     public void testCreateUser() throws LoginFailException, NoPermissionException {
-        UserVO user = new UserVO("User", "password", VISITOR);
+        UserVO user = new UserVO(new UserName("User"), "password", VISITOR);
         library.createUser(adminToken, user);
-        assertNotNull(library.loginUser("User", "password"));
+        assertNotNull(library.loginUser(new UserName("User"), "password"));
     }
 
     @Test
     public void testLoginAdmin() throws LoginFailException {
-        assertNotNull(library.loginUser("admin", "password"));
+        assertNotNull(library.loginUser(new UserName("admin"), "password"));
     }
 
     @Test
@@ -76,12 +77,12 @@ public class LibraryTest {
     }
 
     private void createAndLoginVisitor() throws NoPermissionException, LoginFailException {
-        library.createUser(adminToken, new UserVO("visitor", "12345", VISITOR));
-        visitorToken = library.loginUser("visitor", "12345");
+        library.createUser(adminToken, new UserVO(new UserName("visitor"), "12345", VISITOR));
+        visitorToken = library.loginUser(new UserName("visitor"), "12345");
     }
 
     private void createAndLoginLibrarian() throws NoPermissionException, LoginFailException {
-        library.createUser(adminToken, new UserVO("librarian", "12345", LIBRARIAN));
-        librarianToken = library.loginUser("librarian", "12345");
+        library.createUser(adminToken, new UserVO(new UserName("librarian"), "12345", LIBRARIAN));
+        librarianToken = library.loginUser(new UserName("librarian"), "12345");
     }
 }

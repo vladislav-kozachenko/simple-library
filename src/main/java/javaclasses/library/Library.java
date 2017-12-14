@@ -6,6 +6,7 @@ import javaclasses.library.impl.author.fields.AuthorID;
 import javaclasses.library.impl.book.Book;
 import javaclasses.library.impl.book.fields.BookID;
 import javaclasses.library.impl.book.BookVO;
+import javaclasses.library.impl.user.UserName;
 import javaclasses.library.impl.user.UserVO;
 
 import java.util.List;
@@ -63,7 +64,7 @@ public interface Library {
      *
      * @return unique security token.
      */
-    String loginUser(String login, String password) throws LoginFailException;
+    String loginUser(UserName login, String password) throws LoginFailException;
 
     /**
      * Creates new user author.
