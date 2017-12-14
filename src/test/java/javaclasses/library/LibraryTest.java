@@ -3,6 +3,8 @@ package javaclasses.library;
 import javaclasses.library.impl.LibraryImpl;
 import javaclasses.library.impl.author.Author;
 import javaclasses.library.impl.author.AuthorVO;
+import javaclasses.library.impl.author.fields.AuthorID;
+import javaclasses.library.impl.author.fields.AuthorName;
 import javaclasses.library.impl.book.BookVO;
 import javaclasses.library.impl.user.User;
 import javaclasses.library.impl.user.UserRole;
@@ -43,32 +45,32 @@ public class LibraryTest {
     @Test
     public void testAddingAuthors() throws LoginFailException, NoPermissionException {
         createAndLoginLibrarian();
-        library.addAuthor(librarianToken, new AuthorVO("John", "Tolkien"));
+        library.addAuthor(librarianToken, new AuthorVO(new AuthorName("John Tolkien")));
         Author author = library.getAuthors().get(0);
-        assertEquals(author.getFirstName(), "John");
+        assertEquals(author.getName().getName(), "John Tolkien");
     }
 
     @Test
     public void testAuthorsGettingById() throws LoginFailException, NoPermissionException {
         createAndLoginLibrarian();
-        library.addAuthor(librarianToken, new AuthorVO("John", "Tolkien"));
-        Author author = library.getAuthorById(0);
-        assertEquals(author.getFirstName(), "John");
+        library.addAuthor(librarianToken, new AuthorVO(new AuthorName("John Tolkien")));
+        Author author = library.getAuthorById(new AuthorID(0));
+        assertEquals(author.getName().getName(), "John Tolkien");
     }
 
     @Test
     public void testBookAdding() throws LoginFailException, NoPermissionException {
         createAndLoginLibrarian();
-        library.addAuthor(librarianToken, new AuthorVO("John", "Tolkien"));
-        library.addBook(librarianToken, new BookVO("LOTR"), new AuthorVO(0));
+        library.addAuthor(librarianToken, new AuthorVO(new AuthorName("John Tolkien")));
+        library.addBook(librarianToken, new BookVO("LOTR"), new AuthorVO(new AuthorID(0)));
         assertEquals("LOTR", library.getBookById(librarianToken, 0).getName());
     }
 
     @Test
     public void testBookBorrowing() throws LoginFailException, NoPermissionException {
         createAndLoginLibrarian();
-        library.addAuthor(librarianToken, new AuthorVO("John", "Tolkien"));
-        library.addBook(librarianToken, new BookVO("LOTR"), new AuthorVO(0));
+        library.addAuthor(librarianToken, new AuthorVO(new AuthorName("John Tolkien")));
+        library.addBook(librarianToken, new BookVO("LOTR"), new AuthorVO(new AuthorID(0)));
         createAndLoginVisitor();
         library.borrowBook(visitorToken, new BookVO(0));
         assertEquals("LOTR", library.getBorrowedBooks(visitorToken).get(0).getName());

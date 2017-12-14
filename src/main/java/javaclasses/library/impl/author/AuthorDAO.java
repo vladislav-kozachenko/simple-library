@@ -1,5 +1,7 @@
 package javaclasses.library.impl.author;
 
+import javaclasses.library.impl.author.fields.AuthorID;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +17,7 @@ public class AuthorDAO {
     }
 
     public void createAuthor(Author author) {
-        author.setId(id);
+        author.setId(new AuthorID(id));
         repository.put(id, author);
         id++;
     }

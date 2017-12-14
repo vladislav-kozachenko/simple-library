@@ -2,6 +2,7 @@ package javaclasses.library;
 
 import javaclasses.library.impl.author.Author;
 import javaclasses.library.impl.author.AuthorVO;
+import javaclasses.library.impl.author.fields.AuthorID;
 import javaclasses.library.impl.book.Book;
 import javaclasses.library.impl.book.BookVO;
 import javaclasses.library.impl.user.UserVO;
@@ -83,5 +84,5 @@ public interface Library {
      * @param id for author searching.
      * @return author with needed id.
      */
-    Author getAuthorById(long id);
+    Author getAuthorById(AuthorID id);
 }

@@ -9,6 +9,7 @@ import javaclasses.library.impl.author.Author;
 import javaclasses.library.impl.author.AuthorDAO;
 import javaclasses.library.impl.author.AuthorService;
 import javaclasses.library.impl.author.AuthorVO;
+import javaclasses.library.impl.author.fields.AuthorID;
 import javaclasses.library.impl.book.Book;
 import javaclasses.library.impl.book.BookDAO;
 import javaclasses.library.impl.book.BookService;
@@ -82,7 +83,7 @@ public class LibraryImpl implements Library {
     }
 
     @Override
-    public Author getAuthorById(long id) {
+    public Author getAuthorById(AuthorID id) {
         return authorService.getById(id);
     }
 }

@@ -1,35 +1,30 @@
 package javaclasses.library.impl.author;
 
+import javaclasses.library.impl.author.fields.AuthorID;
+import javaclasses.library.impl.author.fields.AuthorName;
+
 public class Author {
 
-    private String firstName;
-    private String lastName;
-    private long id;
+    private AuthorName name;
+    private AuthorID id;
 
-    public long getId() {
+    public Author(AuthorName name) {
+        this.name = name;
+    }
+
+    public AuthorName getName() {
+        return name;
+    }
+
+    public void setName(AuthorName name) {
+        this.name = name;
+    }
+
+    public AuthorID getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(AuthorID id) {
         this.id = id;
     }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public Author(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    public Author(AuthorVO vo){
-        firstName = vo.getFirstName();
-        lastName = vo.getLastName();
-    }
-
 }
