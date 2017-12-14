@@ -21,7 +21,7 @@ public interface Library {
      *
      * @param book is the book may be added.
      */
-    void addBook(String securityToken, BookVO book, long... authorIds) throws IllegalAccessException;
+    void addBook(String securityToken, BookVO book, AuthorVO... authors) throws IllegalAccessException;
 
     /**
      * Finds the book which has inputted id.

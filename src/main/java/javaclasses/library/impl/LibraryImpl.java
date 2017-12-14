@@ -50,8 +50,8 @@ public class LibraryImpl implements Library {
     }
 
     @Override
-    public void addBook(String securityToken, BookVO book, long... authorIds) throws IllegalAccessException {
-        bookService.createBook(securityToken, book, authorIds);
+    public void addBook(String securityToken, BookVO book, AuthorVO... authors) throws IllegalAccessException {
+        bookService.createBook(securityToken, book, authors);
     }
 
     @Override

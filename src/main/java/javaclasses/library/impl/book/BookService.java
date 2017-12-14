@@ -2,6 +2,7 @@ package javaclasses.library.impl.book;
 
 import javaclasses.library.impl.author.Author;
 import javaclasses.library.impl.author.AuthorService;
+import javaclasses.library.impl.author.AuthorVO;
 import javaclasses.library.impl.user.UserPermission;
 import javaclasses.library.impl.user.UserService;
 
@@ -20,11 +21,11 @@ public class BookService {
         this.authorService = authorService;
     }
 
-    public void createBook(String securityToken, BookVO bookVO, long... authorIds) throws IllegalAccessException {
+    public void createBook(String securityToken, BookVO bookVO, AuthorVO... authorVOs) throws IllegalAccessException {
         userService.checkUserPermission(securityToken, UserPermission.CREATE_BOOK);
         List<Author> authors = new ArrayList<>();
-        for (long authorId : authorIds) {
-            authors.add(authorService.getById(authorId));
+        for (AuthorVO authorVO : authorVOs) {
+            authors.add(authorService.getById(authorVO.getId()));
         }
         bookDAO.create(new Book(bookVO.getName(), authors));
     }

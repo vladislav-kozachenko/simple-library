@@ -64,7 +64,7 @@ public class LibraryTest {
         library.createUser(adminToken, new UserVO("librarian", "12345", UserRole.LIBRARIAN));
         String librarianToken = library.loginUser("librarian", "12345");
         library.addAuthor(librarianToken, new AuthorVO("John", "Tolkien"));
-        library.addBook(librarianToken, new BookVO("LOTR"), 0);
+        library.addBook(librarianToken, new BookVO("LOTR"), new AuthorVO(0));
         assertEquals("LOTR", library.getBookById(librarianToken, 0).getName());
     }
 
@@ -74,7 +74,7 @@ public class LibraryTest {
         library.createUser(adminToken, new UserVO("librarian", "12345", UserRole.LIBRARIAN));
         String librarianToken = library.loginUser("librarian", "12345");
         library.addAuthor(librarianToken, new AuthorVO("John", "Tolkien"));
-        library.addBook(librarianToken, new BookVO("LOTR"), 0);
+        library.addBook(librarianToken, new BookVO("LOTR"), new AuthorVO(0));
         library.createUser(adminToken, new UserVO("visitor", "12345", UserRole.VISITOR));
         String visitorToken = library.loginUser("visitor", "12345");
         library.borrowBook(visitorToken, new BookVO(0));
