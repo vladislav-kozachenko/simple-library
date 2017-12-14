@@ -28,7 +28,11 @@ public class BookService {
         for (AuthorVO authorVO : authorVOs) {
             authors.add(authorService.getById(authorVO.getId()));
         }
-        bookDAO.create(new Book(bookVO.getName(), authors));
+        final Book book = new Book(bookVO.getName(), authors);
+        bookDAO.create(book);
+        for (Author author : authors) {
+            author.addBook(book);
+        }
     }
 
     public Book getBookById(long id) {
