@@ -5,11 +5,10 @@ import javaclasses.library.impl.author.Author;
 import javaclasses.library.impl.author.AuthorVO;
 import javaclasses.library.impl.author.fields.AuthorID;
 import javaclasses.library.impl.author.fields.AuthorName;
+import javaclasses.library.impl.book.fields.BookID;
+import javaclasses.library.impl.book.fields.BookTitle;
 import javaclasses.library.impl.book.BookVO;
-import javaclasses.library.impl.user.User;
-import javaclasses.library.impl.user.UserRole;
 import javaclasses.library.impl.user.UserVO;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -62,18 +61,18 @@ public class LibraryTest {
     public void testBookAdding() throws LoginFailException, NoPermissionException {
         createAndLoginLibrarian();
         library.addAuthor(librarianToken, new AuthorVO(new AuthorName("John Tolkien")));
-        library.addBook(librarianToken, new BookVO("LOTR"), new AuthorVO(new AuthorID(0)));
-        assertEquals("LOTR", library.getBookById(librarianToken, 0).getName());
+        library.addBook(librarianToken, new BookVO(new BookTitle("LOTR")), new AuthorVO(new AuthorID(0)));
+        assertEquals("LOTR", library.getBookById(librarianToken, new BookID(0)).getTitle().getName());
     }
 
     @Test
     public void testBookBorrowing() throws LoginFailException, NoPermissionException {
         createAndLoginLibrarian();
         library.addAuthor(librarianToken, new AuthorVO(new AuthorName("John Tolkien")));
-        library.addBook(librarianToken, new BookVO("LOTR"), new AuthorVO(new AuthorID(0)));
+        library.addBook(librarianToken, new BookVO(new BookTitle("LOTR")), new AuthorVO(new AuthorID(0)));
         createAndLoginVisitor();
-        library.borrowBook(visitorToken, new BookVO(0));
-        assertEquals("LOTR", library.getBorrowedBooks(visitorToken).get(0).getName());
+        library.borrowBook(visitorToken, new BookVO(new BookID(0)));
+        assertEquals("LOTR", library.getBorrowedBooks(visitorToken).get(0).getTitle().getName());
     }
 
     private void createAndLoginVisitor() throws NoPermissionException, LoginFailException {

@@ -3,8 +3,8 @@ package javaclasses.library.impl.book;
 import javaclasses.library.NoPermissionException;
 import javaclasses.library.impl.author.Author;
 import javaclasses.library.impl.author.AuthorService;
-import javaclasses.library.impl.author.AuthorServiceImpl;
 import javaclasses.library.impl.author.AuthorVO;
+import javaclasses.library.impl.book.fields.BookID;
 import javaclasses.library.impl.user.UserPermission;
 import javaclasses.library.impl.user.UserService;
 
@@ -29,15 +29,15 @@ public class BookService {
         for (AuthorVO authorVO : authorVOs) {
             authors.add(authorService.getById(authorVO.getId()));
         }
-        final Book book = new Book(bookVO.getName(), authors);
+        final Book book = new Book(bookVO.getTitle(), authors);
         bookDAO.create(book);
         for (Author author : authors) {
             author.addBook(book);
         }
     }
 
-    public Book getBookById(long id) {
-        return bookDAO.findById(id);
+    public Book getBookById(BookID id) {
+        return bookDAO.findById(id.getId());
     }
 
     public void borrowBook(String securityToken, BookVO bookVO) throws NoPermissionException {

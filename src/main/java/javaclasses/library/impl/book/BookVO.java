@@ -1,23 +1,30 @@
 package javaclasses.library.impl.book;
 
+import javaclasses.library.impl.book.fields.BookID;
+import javaclasses.library.impl.book.fields.BookTitle;
+
 public class BookVO {
 
-    private long id;
-    private String name;
+    private BookID id;
+    private BookTitle title;
 
-    public BookVO(long id) {
+    public BookVO(BookTitle title) {
+        this.title = title;
+    }
+
+    public BookVO(BookID id) {
         this.id = id;
     }
 
-    public BookVO(String name) {
-        this.name = name;
+    public void setId(BookID id) {
+        this.id = id;
     }
 
-    public long getId() {
+    public BookTitle getTitle() {
+        return title;
+    }
+
+    public BookID getId() {
         return id;
-    }
-
-    public String getName() {
-        return name;
     }
 }

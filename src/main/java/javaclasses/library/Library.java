@@ -4,6 +4,7 @@ import javaclasses.library.impl.author.Author;
 import javaclasses.library.impl.author.AuthorVO;
 import javaclasses.library.impl.author.fields.AuthorID;
 import javaclasses.library.impl.book.Book;
+import javaclasses.library.impl.book.fields.BookID;
 import javaclasses.library.impl.book.BookVO;
 import javaclasses.library.impl.user.UserVO;
 
@@ -31,7 +32,7 @@ public interface Library {
      * @param id            is the identifier of needed book.
      * @return the book with inputted id.
      */
-    Book getBookById(String securityToken, long id);
+    Book getBookById(String securityToken, BookID id);
 
     /**
      * Assign book that may be borrowed to the user that needs to borrow it.

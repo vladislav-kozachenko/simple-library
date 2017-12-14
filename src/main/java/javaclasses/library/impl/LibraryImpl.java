@@ -7,10 +7,8 @@ import javaclasses.library.impl.UserSession.UserSessionDAO;
 import javaclasses.library.impl.UserSession.UserSessionService;
 import javaclasses.library.impl.author.*;
 import javaclasses.library.impl.author.fields.AuthorID;
-import javaclasses.library.impl.book.Book;
-import javaclasses.library.impl.book.BookDAO;
-import javaclasses.library.impl.book.BookService;
-import javaclasses.library.impl.book.BookVO;
+import javaclasses.library.impl.book.*;
+import javaclasses.library.impl.book.fields.BookID;
 import javaclasses.library.impl.user.UserDAO;
 import javaclasses.library.impl.user.UserService;
 import javaclasses.library.impl.user.UserVO;
@@ -50,7 +48,7 @@ public class LibraryImpl implements Library {
     }
 
     @Override
-    public Book getBookById(String securityToken, long id) {
+    public Book getBookById(String securityToken, BookID id) {
         return bookService.getBookById(id);
     }
 
