@@ -34,7 +34,7 @@ public class LibraryImpl implements Library {
         final AuthorDAO authorDAO = new AuthorDAO();
         authorService = new AuthorServiceImpl(authorDAO, userService);
         final BookDAO bookDAO = new BookDAO();
-        bookService = new BookService(bookDAO, userService, authorService);
+        bookService = new BookServiceImpl(bookDAO, userService, authorService);
     }
 
     @Override
