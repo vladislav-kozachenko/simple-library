@@ -1,5 +1,6 @@
 package javaclasses.library.impl.book;
 
+import javaclasses.library.NoPermissionException;
 import javaclasses.library.impl.author.Author;
 import javaclasses.library.impl.author.AuthorService;
 import javaclasses.library.impl.author.AuthorVO;
@@ -21,7 +22,7 @@ public class BookService {
         this.authorService = authorService;
     }
 
-    public void createBook(String securityToken, BookVO bookVO, AuthorVO... authorVOs) throws IllegalAccessException {
+    public void createBook(String securityToken, BookVO bookVO, AuthorVO... authorVOs) throws NoPermissionException {
         userService.checkUserPermission(securityToken, UserPermission.CREATE_BOOK);
         List<Author> authors = new ArrayList<>();
         for (AuthorVO authorVO : authorVOs) {
@@ -34,7 +35,7 @@ public class BookService {
         return bookDAO.findById(id);
     }
 
-    public void borrowBook(String securityToken, BookVO bookVO) throws IllegalAccessException {
+    public void borrowBook(String securityToken, BookVO bookVO) throws NoPermissionException {
         userService.checkUserPermission(securityToken, UserPermission.BORROW_BOOK);
         final Book book = getBookById(bookVO.getId());
         userService.borrowBook(securityToken, book);

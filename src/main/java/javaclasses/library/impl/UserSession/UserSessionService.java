@@ -1,5 +1,6 @@
 package javaclasses.library.impl.UserSession;
 
+import javaclasses.library.NoPermissionException;
 import javaclasses.library.impl.user.User;
 
 import java.security.MessageDigest;
@@ -35,7 +36,7 @@ public class UserSessionService {
         return new UserSession(date, securedToken, user);
     }
 
-    public User getUserBySecurityToken(String securityToken) throws IllegalAccessException {
+    public User getUserBySecurityToken(String securityToken) throws NoPermissionException {
         return userSessionDAO.getUserByToken(securityToken);
     }
 }

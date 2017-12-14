@@ -1,5 +1,6 @@
 package javaclasses.library.impl.UserSession;
 
+import javaclasses.library.NoPermissionException;
 import javaclasses.library.impl.user.User;
 
 public class UserSessionDAO {
@@ -14,12 +15,12 @@ public class UserSessionDAO {
         repository.insert(session);
     }
 
-    public User getUserByToken(String securityToken) throws IllegalAccessException {
+    public User getUserByToken(String securityToken) throws NoPermissionException {
         for (UserSession session : repository.getRepository().values()) {
             if (session.getToken().equals(securityToken)) {
                 return session.getUser();
             }
         }
-        throw new IllegalAccessException("Cannot authenticate user with token.");
+        throw new NoPermissionException("Cannot authenticate user with token.");
     }
 }

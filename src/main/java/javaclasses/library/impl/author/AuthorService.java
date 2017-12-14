@@ -1,6 +1,7 @@
 package javaclasses.library.impl.author;
 
 import com.google.common.base.Preconditions;
+import javaclasses.library.NoPermissionException;
 import javaclasses.library.impl.user.UserPermission;
 import javaclasses.library.impl.user.UserService;
 
@@ -16,7 +17,7 @@ public class AuthorService {
         this.userService = userService;
     }
 
-    public void createAuthor(String securityToken, AuthorVO authorVO) throws IllegalAccessException {
+    public void createAuthor(String securityToken, AuthorVO authorVO) throws NoPermissionException {
         Preconditions.checkNotNull(authorVO);
         userService.checkUserPermission(securityToken, UserPermission.CREATE_AUTHOR);
         Author author = new Author(authorVO.getFirstName(), authorVO.getLastName());

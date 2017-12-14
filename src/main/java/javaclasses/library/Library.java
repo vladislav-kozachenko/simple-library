@@ -6,7 +6,6 @@ import javaclasses.library.impl.book.Book;
 import javaclasses.library.impl.book.BookVO;
 import javaclasses.library.impl.user.UserVO;
 
-import javax.naming.AuthenticationException;
 import java.util.List;
 
 /**
@@ -21,7 +20,7 @@ public interface Library {
      *
      * @param book is the book may be added.
      */
-    void addBook(String securityToken, BookVO book, AuthorVO... authors) throws IllegalAccessException;
+    void addBook(String securityToken, BookVO book, AuthorVO... authors) throws NoPermissionException;
 
     /**
      * Finds the book which has inputted id.
@@ -39,7 +38,7 @@ public interface Library {
      * @param securityToken unique security token may be used to get user and check if the user is logged in.
      * @param book          is the book that may be borrowed.
      */
-    void borrowBook(String securityToken, BookVO book) throws IllegalAccessException;
+    void borrowBook(String securityToken, BookVO book) throws NoPermissionException;
 
     /**
      * Finds all books that user borrowed.
@@ -48,21 +47,21 @@ public interface Library {
      *                      required permission.
      * @return the list of borrowed books.
      */
-    List<Book> getBorrowedBooks(String securityToken) throws IllegalAccessException;
+    List<Book> getBorrowedBooks(String securityToken) throws NoPermissionException;
 
     /**
      * Creating new user.
      *
      * @param user that may be created.
      */
-    void createUser(String securityToken, UserVO user) throws IllegalAccessException;
+    void createUser(String securityToken, UserVO user) throws NoPermissionException;
 
     /**
      * Creates new user session.
      *
      * @return unique security token.
      */
-    String loginUser(String login, String password) throws AuthenticationException;
+    String loginUser(String login, String password) throws LoginFailException;
 
     /**
      * Creates new user author.
@@ -71,7 +70,7 @@ public interface Library {
      *                      and have permissions to create author.
      * @param author        that may be created.
      */
-    void addAuthor(String securityToken, AuthorVO author) throws IllegalAccessException;
+    void addAuthor(String securityToken, AuthorVO author) throws NoPermissionException;
 
     /**
      * Returns list of all author has been added to library.
