@@ -41,6 +41,14 @@ public interface Library {
     void borrowBook(String securityToken, BookVO book) throws IllegalAccessException;
 
     /**
+     * Finds all books that user borrowed.
+     * @param securityToken unique security token may be used to get user and check if the user is logged in and has
+     *                      required permission.
+     * @return the list of borrowed books.
+     */
+    List<Book> getBorrowedBooks(String securityToken) throws IllegalAccessException;
+
+    /**
      * Creating new user.
      *
      * @param user that may be created.

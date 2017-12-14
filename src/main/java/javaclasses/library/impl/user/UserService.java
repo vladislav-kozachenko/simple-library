@@ -7,10 +7,12 @@ import javax.naming.AuthenticationException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import java.util.List;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Strings.isNullOrEmpty;
+import static javaclasses.library.impl.user.UserPermission.BORROW_BOOK;
 import static javaclasses.library.impl.user.UserPermission.CREATE_USER;
 import static javaclasses.library.impl.user.UserRole.ADMIN;
 
@@ -71,5 +73,11 @@ public class UserService {
         checkNotNull(book);
         User user = userSessionService.getUserBySecurityToken(securityToken);
         userDAO.borrowBook(user, book);
+    }
+
+    public List<Book> getBorrowedBooks(String securityToken) throws IllegalAccessException {
+        checkArgument(!isNullOrEmpty(securityToken));
+        checkUserPermission(securityToken, BORROW_BOOK);
+        return userSessionService.getUserBySecurityToken(securityToken).getBorrowedBooks();
     }
 }

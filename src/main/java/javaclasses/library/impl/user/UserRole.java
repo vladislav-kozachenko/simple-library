@@ -3,7 +3,7 @@ package javaclasses.library.impl.user;
 import static javaclasses.library.impl.user.UserPermission.*;
 
 public enum UserRole {
-    VISITOR,
+    VISITOR(BORROW_BOOK),
     LIBRARIAN(CREATE_AUTHOR, CREATE_BOOK),
     ADMIN(CREATE_USER);
 

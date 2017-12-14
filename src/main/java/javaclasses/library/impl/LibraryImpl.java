@@ -65,6 +65,11 @@ public class LibraryImpl implements Library {
     }
 
     @Override
+    public List<Book> getBorrowedBooks(String securityToken) throws IllegalAccessException {
+        return userService.getBorrowedBooks(securityToken);
+    }
+
+    @Override
     public void createUser(String securityToken, UserVO user) throws IllegalAccessException {
         userService.createUser(securityToken, user);
     }

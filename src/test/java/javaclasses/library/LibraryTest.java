@@ -67,4 +67,17 @@ public class LibraryTest {
         library.addBook(librarianToken, new BookVO("LOTR"), 0);
         assertEquals("LOTR", library.getBookById(librarianToken, 0).getName());
     }
+
+    @Test
+    public void testBookBorrowing() throws AuthenticationException, IllegalAccessException {
+        String adminToken = library.loginUser("admin", "password");
+        library.createUser(adminToken, new UserVO("librarian", "12345", UserRole.LIBRARIAN));
+        String librarianToken = library.loginUser("librarian", "12345");
+        library.addAuthor(librarianToken, new AuthorVO("John", "Tolkien"));
+        library.addBook(librarianToken, new BookVO("LOTR"), 0);
+        library.createUser(adminToken, new UserVO("visitor", "12345", UserRole.VISITOR));
+        String visitorToken = library.loginUser("visitor", "12345");
+        library.borrowBook(visitorToken, new BookVO(0));
+        assertEquals("LOTR", library.getBorrowedBooks(visitorToken).get(0).getName());
+    }
 }
