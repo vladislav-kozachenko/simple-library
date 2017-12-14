@@ -2,18 +2,18 @@ package javaclasses.library.impl.book.fields;
 
 public class BookID {
 
-    private long id;
+    private long value;
 
-    public BookID(long id) {
-        this.id = id;
+    public BookID(long value) {
+        this.value = value;
     }
 
-    public long getId() {
-        return id;
+    public long getValue() {
+        return value;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setValue(long value) {
+        this.value = value;
     }
 
     @Override
@@ -23,11 +23,11 @@ public class BookID {
 
         BookID bookID = (BookID) o;
 
-        return id == bookID.id;
+        return value == bookID.value;
     }
 
     @Override
     public int hashCode() {
-        return (int) (id ^ (id >>> 32));
+        return (int) (value ^ (value >>> 32));
     }
 }

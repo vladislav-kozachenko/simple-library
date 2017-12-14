@@ -2,18 +2,18 @@ package javaclasses.library.impl.book.fields;
 
 public class BookTitle {
 
-    private String name;
+    private String value;
 
-    public BookTitle(String name) {
-        this.name = name;
+    public BookTitle(String value) {
+        this.value = value;
     }
 
-    public String getName() {
-        return name;
+    public String getValue() {
+        return value;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setValue(String value) {
+        this.value = value;
     }
 
     @Override
@@ -23,11 +23,11 @@ public class BookTitle {
 
         BookTitle bookTitle = (BookTitle) o;
 
-        return name != null ? name.equals(bookTitle.name) : bookTitle.name == null;
+        return value != null ? value.equals(bookTitle.value) : bookTitle.value == null;
     }
 
     @Override
     public int hashCode() {
-        return name != null ? name.hashCode() : 0;
+        return value != null ? value.hashCode() : 0;
     }
 }

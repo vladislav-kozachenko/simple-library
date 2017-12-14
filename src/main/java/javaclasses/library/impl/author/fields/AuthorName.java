@@ -1,18 +1,18 @@
 package javaclasses.library.impl.author.fields;
 
 public class AuthorName {
-    String name;
+    String value;
 
-    public AuthorName(String name) {
-        this.name = name;
+    public AuthorName(String value) {
+        this.value = value;
     }
 
-    public String getName() {
-        return name;
+    public String getValue() {
+        return value;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setValue(String value) {
+        this.value = value;
     }
 
     @Override
@@ -22,11 +22,11 @@ public class AuthorName {
 
         AuthorName that = (AuthorName) o;
 
-        return name != null ? name.equals(that.name) : that.name == null;
+        return value != null ? value.equals(that.value) : that.value == null;
     }
 
     @Override
     public int hashCode() {
-        return name != null ? name.hashCode() : 0;
+        return value != null ? value.hashCode() : 0;
     }
 }

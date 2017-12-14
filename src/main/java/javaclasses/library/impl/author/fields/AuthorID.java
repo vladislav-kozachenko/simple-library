@@ -1,18 +1,18 @@
 package javaclasses.library.impl.author.fields;
 
 public class AuthorID {
-    private long id;
+    private long value;
 
-    public AuthorID(long id) {
-        this.id = id;
+    public AuthorID(long value) {
+        this.value = value;
     }
 
-    public long getId() {
-        return id;
+    public long getValue() {
+        return value;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setValue(long value) {
+        this.value = value;
     }
 
     @Override
@@ -22,11 +22,11 @@ public class AuthorID {
 
         AuthorID authorID = (AuthorID) o;
 
-        return id == authorID.id;
+        return value == authorID.value;
     }
 
     @Override
     public int hashCode() {
-        return (int) (id ^ (id >>> 32));
+        return (int) (value ^ (value >>> 32));
     }
 }

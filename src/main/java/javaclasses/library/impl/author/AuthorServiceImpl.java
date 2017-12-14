@@ -3,7 +3,6 @@ package javaclasses.library.impl.author;
 import com.google.common.base.Preconditions;
 import javaclasses.library.NoPermissionException;
 import javaclasses.library.impl.author.fields.AuthorID;
-import javaclasses.library.impl.author.fields.AuthorName;
 import javaclasses.library.impl.user.UserPermission;
 import javaclasses.library.impl.user.UserService;
 
@@ -34,6 +33,6 @@ public class AuthorServiceImpl implements AuthorService{
 
     @Override
     public Author getById(AuthorID id) {
-        return authorDAO.findById(id.getId());
+        return authorDAO.findById(id.getValue());
     }
 }

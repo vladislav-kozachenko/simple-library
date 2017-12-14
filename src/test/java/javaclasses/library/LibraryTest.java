@@ -46,7 +46,7 @@ public class LibraryTest {
         createAndLoginLibrarian();
         library.addAuthor(librarianToken, new AuthorVO(new AuthorName("John Tolkien")));
         Author author = library.getAuthors().get(0);
-        assertEquals(author.getName().getName(), "John Tolkien");
+        assertEquals(author.getName().getValue(), "John Tolkien");
     }
 
     @Test
@@ -54,7 +54,7 @@ public class LibraryTest {
         createAndLoginLibrarian();
         library.addAuthor(librarianToken, new AuthorVO(new AuthorName("John Tolkien")));
         Author author = library.getAuthorById(new AuthorID(0));
-        assertEquals(author.getName().getName(), "John Tolkien");
+        assertEquals(author.getName().getValue(), "John Tolkien");
     }
 
     @Test
@@ -62,7 +62,7 @@ public class LibraryTest {
         createAndLoginLibrarian();
         library.addAuthor(librarianToken, new AuthorVO(new AuthorName("John Tolkien")));
         library.addBook(librarianToken, new BookVO(new BookTitle("LOTR")), new AuthorVO(new AuthorID(0)));
-        assertEquals("LOTR", library.getBookById(librarianToken, new BookID(0)).getTitle().getName());
+        assertEquals("LOTR", library.getBookById(librarianToken, new BookID(0)).getTitle().getValue());
     }
 
     @Test
@@ -72,7 +72,7 @@ public class LibraryTest {
         library.addBook(librarianToken, new BookVO(new BookTitle("LOTR")), new AuthorVO(new AuthorID(0)));
         createAndLoginVisitor();
         library.borrowBook(visitorToken, new BookVO(new BookID(0)));
-        assertEquals("LOTR", library.getBorrowedBooks(visitorToken).get(0).getTitle().getName());
+        assertEquals("LOTR", library.getBorrowedBooks(visitorToken).get(0).getTitle().getValue());
     }
 
     private void createAndLoginVisitor() throws NoPermissionException, LoginFailException {

@@ -37,7 +37,7 @@ public class BookServiceImpl implements BookService {
     }
 
     public Book getBookById(BookID id) {
-        return bookDAO.findById(id.getId());
+        return bookDAO.findById(id.getValue());
     }
 
     public void borrowBook(String securityToken, BookVO bookVO) throws NoPermissionException {
